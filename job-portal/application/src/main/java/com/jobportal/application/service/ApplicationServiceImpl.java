@@ -35,7 +35,7 @@ public class ApplicationServiceImpl implements IApplicationService{
 
         try {
             ListingDto listingResponse = webClient.get()
-                    .uri(uriBuilder -> uriBuilder.path("/api/v1/fetch")
+                    .uri(uriBuilder -> uriBuilder.path("/api/v1/joblistings/fetch")
                             .queryParam("id", jobListingId) // Add the query parameter
                             .build()) // Build the URI
                     .retrieve()

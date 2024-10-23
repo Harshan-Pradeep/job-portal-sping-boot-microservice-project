@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "api/v1/users", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class UserController {
 
