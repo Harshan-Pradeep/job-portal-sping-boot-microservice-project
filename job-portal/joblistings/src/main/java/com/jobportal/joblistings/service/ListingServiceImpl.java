@@ -1,19 +1,32 @@
 package com.jobportal.joblistings.service;
 
+import com.itextpdf.text.DocumentException;
 import com.jobportal.joblistings.dto.ListingDto;
 import com.jobportal.joblistings.entity.Listing;
+import com.jobportal.joblistings.enums.ListingStatus;
 import com.jobportal.joblistings.exception.ResourceNotFoundException;
 import com.jobportal.joblistings.mapper.ListingMapper;
 import com.jobportal.joblistings.repository.ListingRepository;
+import com.jobportal.joblistings.utility.PdfGenerator;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@AllArgsConstructor
 public class ListingServiceImpl implements IListingService{
 
-    private ListingRepository listingRepository;
+    private final ListingRepository listingRepository;
+    private final PdfGenerator pdfGenerator;
+    private static final Logger logger = LoggerFactory.getLogger(ListingServiceImpl.class);
 
+    public ListingServiceImpl(ListingRepository listingRepository, PdfGenerator pdfGenerator) {
+        this.listingRepository = listingRepository;
+        this.pdfGenerator = pdfGenerator;
+    }
 
     /**
      * @param listingDto
@@ -21,6 +34,7 @@ public class ListingServiceImpl implements IListingService{
     @Override
     public void createListing(ListingDto listingDto) {
         Listing listing = ListingMapper.mapToListing(listingDto, new Listing());
+        listing.setListingStatus(ListingStatus.OPEN);
         listingRepository.save(listing);
     }
 
@@ -73,4 +87,34 @@ public class ListingServiceImpl implements IListingService{
 
         return listingDto;
     }
+
+    /**
+     * @return
+     * @throws DocumentException
+     */
+    @Override
+    public byte[] getAllListingsAsPdf() throws DocumentException {
+        List<Listing> listings = listingRepository.findAll();
+        return pdfGenerator.generateListingsPdf(listings);
+    }
+
+    /**
+     * @param listingId
+     */
+    @Override
+    @Transactional
+    public void incrementApplicationCount(Long listingId) {
+        logger.info("incrementApplicationCount called for listingId: {}", listingId);
+        Listing listing = listingRepository.findById(listingId)
+                .orElseThrow(() -> new ResourceNotFoundException("Listing", "Id", listingId.toString()));
+
+        int currentCount = listing.getApplicationsCount();
+        logger.info("Current application count for listing {}: {}", listingId, currentCount);
+
+        listing.setApplicationsCount(currentCount + 1);
+
+        listingRepository.save(listing);
+        logger.info("Updated application count for listing {}: new count {}", listingId, listing.getApplicationsCount());
+    }
+
 }

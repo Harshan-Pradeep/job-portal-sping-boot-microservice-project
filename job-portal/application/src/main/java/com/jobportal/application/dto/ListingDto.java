@@ -1,7 +1,7 @@
-package com.jobportal.joblistings.dto;
+package com.jobportal.application.dto;
 
-import com.jobportal.joblistings.enums.JobType;
-import com.jobportal.joblistings.enums.ListingStatus;
+import com.jobportal.application.enums.JobType;
+import com.jobportal.application.enums.ListingStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

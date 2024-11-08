@@ -1,5 +1,6 @@
 package com.jobportal.application.service;
 
+import com.itextpdf.text.DocumentException;
 import com.jobportal.application.dto.ApplicationDto;
 
 public interface IApplicationService {
@@ -11,4 +12,6 @@ public interface IApplicationService {
     boolean updateApplication(ApplicationDto applicationDto);
 
     boolean deleteApplication(Long applicationId);
+
+    byte[] getAllApplicationsAsPdf(Long jobListingId) throws DocumentException;
 }

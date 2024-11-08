@@ -55,7 +55,9 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
                 exception.getMessage(),
                 LocalDateTime.now()
         );
-        return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(errorResponseDTO);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)

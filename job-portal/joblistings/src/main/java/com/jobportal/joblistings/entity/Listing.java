@@ -39,4 +39,8 @@ public class Listing extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ListingStatus listingStatus;
+
+    @Column(columnDefinition = "integer default 0")
+    private Integer applicationsCount = 0;
+
 }
