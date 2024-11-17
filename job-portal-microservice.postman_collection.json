@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "2ac807c8-3658-44fd-aabd-5135fe3558c7",
+		"name": "job-portal-microservice Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32220207"
+	},
+	"item": [
+		{
+			"name": "User Microservice",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"john_doe123\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"passwordHash\": \"Password@123\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"userRole\": \"JOB_SEEKER\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/users/fetch?email=john.doe@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "john.doe@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/users/delete?email=john.doe@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "john.doe@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"tested_user\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"passwordHash\": \"Password@123\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"userRole\": \"JOB_SEEKER\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/users/update"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job-Listings Microservice",
+			"item": [
+				{
+					"name": "Create Listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Software Engineer\",\r\n    \"description\": \"Develop and maintain web applications.\",\r\n    \"company\": \"Tech Solutions Inc.\",\r\n    \"location\": \"San Francisco, CA\",\r\n    \"salaryRange\": \"$80,000 - $120,000\",\r\n    \"experienceLevel\": \"Mid-level\",\r\n    \"jobType\": \"FULL_TIME\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/joblistings/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/joblistings/fetch?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"joblistings",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Listing",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"QA Engineer\",\r\n    \"description\": \"Develop and maintain web applications.\",\r\n    \"company\": \"Tech Solutions Inc.\",\r\n    \"location\": \"San Francisco, CA\",\r\n    \"salaryRange\": \"$90,000 - $120,000\",\r\n    \"experienceLevel\": \"Mid-level\",\r\n    \"jobType\": \"FULL_TIME\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/joblistings/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Listing",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/joblistings/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"joblistings",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8085/api/v1/joblistings/export-pdf"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job-Application Microservice",
+			"item": [
+				{
+					"name": "Create a application",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"jobListingId\": 123,\r\n  \"applicantId\": 456,\r\n  \"status\": \"SUBMITTED\",\r\n  \"resumeUrl\": \"http://example.com/resume.pdf\",\r\n  \"coverLetter\": \"I am highly interested in this position and would love to contribute my skills.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/applications/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Application",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/applications/fetch?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Application",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"jobListingId\": 123,\r\n  \"applicantId\": 456,\r\n  \"status\": \"IN_REVIEW\",\r\n  \"resumeUrl\": \"http://example.com/resume.pdf\",\r\n  \"coverLetter\": \"I am highly interested in this position and would love to contribute my skills.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/applications/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Application",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/applications/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all job applications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/applications/report?jobListingId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								"report"
+							],
+							"query": [
+								{
+									"key": "jobListingId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
